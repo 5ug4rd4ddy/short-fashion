@@ -1,0 +1,19 @@
+# Ignore sensitive files
+token.json
+client_secret.json
+.env
+
+# Ignore system files
+.DS_Store
+
+# Ignore temporary files
+temp/
+
+# Ignore output files
+output/
+
+# Python virtual environment
+venv/
+__pycache__/
+*.py[cod]
+*$py.class
