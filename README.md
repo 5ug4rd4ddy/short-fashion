@@ -10,6 +10,87 @@ Instal semua dependensi yang diperlukan:
 pip install -r requirements.txt
 ```
 
+## Mengatasi Masalah Cookie Google
+
+Untuk menggunakan ImageFX, Anda memerlukan cookie Google yang valid. Cookie ini berubah setiap hari, yang bisa menyulitkan jika Anda menjalankan aplikasi di server. Ada dua cara untuk mengatasi masalah ini:
+
+### 1. Menggunakan Variabel Lingkungan Langsung
+
+Program ini sekarang mendukung penggunaan variabel lingkungan `GOOGLE_COOKIE` secara langsung tanpa memerlukan file `.env`. Anda dapat mengatur variabel lingkungan ini dengan cara:
+
+**Untuk macOS/Linux:**
+```bash
+# Mengatur variabel lingkungan untuk sesi saat ini
+export GOOGLE_COOKIE="nilai_cookie_anda"
+
+# Jalankan program
+python cli.py [opsi lainnya]
+```
+
+**Untuk Windows:**
+```bash
+# Mengatur variabel lingkungan untuk sesi saat ini
+set GOOGLE_COOKIE=nilai_cookie_anda
+
+# Jalankan program
+python cli.py [opsi lainnya]
+```
+
+### 2. Menggunakan Script Otomatis
+
+Alternatif lain, Anda dapat menggunakan script `get_google_cookie.py` yang akan mengambil cookie secara otomatis dari browser Anda:
+
+```bash
+# Pastikan browser_cookie3 sudah terinstal
+pip install browser-cookie3
+
+# Jalankan script untuk mengambil cookie secara otomatis
+python get_google_cookie.py
+```
+
+Script ini akan:
+1. Mengambil cookie Google dari browser yang tersedia (Chrome, Firefox, Edge, Safari)
+2. Memperbarui file `.env` dengan cookie terbaru secara otomatis
+3. Memungkinkan Anda menjalankan aplikasi tanpa perlu memperbarui cookie secara manual
+
+### Otomatisasi Update Cookie
+
+Untuk memudahkan proses update cookie, terutama di lingkungan server, Anda dapat menggunakan script otomatisasi yang disediakan:
+
+**Untuk macOS/Linux:**
+```bash
+# Berikan izin eksekusi
+chmod +x run_update_cookie.sh
+
+# Jalankan script
+./run_update_cookie.sh
+```
+
+**Untuk Windows:**
+```bash
+# Jalankan script batch
+run_update_cookie.bat
+```
+
+### Mengatur Jadwal Otomatis
+
+**Untuk macOS/Linux (menggunakan crontab):**
+```bash
+# Edit crontab
+crontab -e
+
+# Tambahkan baris berikut untuk menjalankan script setiap 12 jam (jam 8 pagi dan 8 malam)
+0 8,20 * * * /path/to/your/project/run_update_cookie.sh >> /path/to/your/project/cookie_update.log 2>&1
+```
+
+**Untuk Windows (menggunakan Task Scheduler):**
+1. Buka Task Scheduler
+2. Buat tugas baru
+3. Atur trigger untuk berjalan setiap 12 jam
+4. Tambahkan action untuk menjalankan `run_update_cookie.bat`
+
+> **Catatan**: Pastikan Anda sudah login ke [Google Labs Image FX](https://labs.google/fx/tools/image-fx) di salah satu browser Anda sebelum menjalankan script ini.
+
 ## Penggunaan
 
 Program ini dapat menggunakan file JSON sebagai sumber konten atau menghasilkan konten baru menggunakan prompt.txt. Berikut adalah contoh perintah dasar:

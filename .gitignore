@@ -3,6 +3,10 @@ token.json
 client_secret.json
 .env
 run-local.sh
+set_cookie.sh
+cookie.txt
+generate_image.py
+prompt_quote.txt
 
 # Ignore system files
 .DS_Store

@@ -97,7 +97,7 @@ def generate_image_from_prompt(prompt: str, output_dir: str = None, count: int =
         
         # Mode normal dengan ImageFX
         # Ambil Google cookie dari environment variable
-        google_cookie = os.getenv("GOOGLE_COOKIE")
+        google_cookie = os.environ.get("GOOGLE_COOKIE")
         if not google_cookie:
             log_callback("Error: GOOGLE_COOKIE tidak ditemukan di environment variable atau file .env")
             return False
